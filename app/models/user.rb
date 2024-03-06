@@ -1,3 +1,6 @@
+disable linter
+
+
 class User < ApplicationRecord
   include Devise::JWT::RevocationStrategies::JTIMatcher
   # Include default devise modules. Others available are:
