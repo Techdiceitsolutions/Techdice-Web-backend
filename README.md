@@ -5,10 +5,8 @@
 
 <h1><b>TECH Dice</b></h1>
  
-  
 
 </div>
-
 
 # 📗 Table of Contents
 
