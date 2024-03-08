@@ -13,4 +13,13 @@ Rails.application.routes.draw do
     passwords: 'admins/passwords'
   }
 
+  namespace :api do
+
+    namespace :v1 do
+      resources :services
+      resources :user_services
+    end
+
+  end
+
 end
