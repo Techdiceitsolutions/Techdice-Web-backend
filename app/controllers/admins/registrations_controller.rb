@@ -1,5 +1,5 @@
 class Admins::RegistrationsController < Devise::RegistrationsController
-   before_action :configure_permitted_params, only: [:create]
+  before_action :configure_permitted_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -59,7 +59,7 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   # end
 
   def configure_permitted_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name])
   end
 
   def respond_with(resource, _options = {})
