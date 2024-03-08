@@ -1,5 +1,5 @@
 class UserServicesController < ApplicationController
-  before_action :set_user_service, only: %i[ show update destroy ]
+  before_action :set_user_service, only: %i[show update destroy]
 
   # GET /user_services
   def index
@@ -39,13 +39,15 @@ class UserServicesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user_service
-      @user_service = UserService.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_service_params
-      params.require(:user_service).permit(:career_goals, :unique_qualities, :position, :resume, :exciting_project, :user_id, :service_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user_service
+    @user_service = UserService.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def user_service_params
+    params.require(:user_service).permit(:career_goals, :unique_qualities, :position, :resume, :exciting_project,
+                                         :user_id, :service_id)
+  end
 end
