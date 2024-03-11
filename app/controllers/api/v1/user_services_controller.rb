@@ -5,9 +5,13 @@ module Api
 
       # GET /user_services
       def index
-        @user_services = UserService.all
+        # @user_services = UserService.all
+        @user_services = UserService.all.map do |user_service|
+          user_service.attributes.merge(resume: Base64.encode64(user_service.resume))
+        end
 
         render json: @user_services
+
       end
 
       # GET /user_services/1

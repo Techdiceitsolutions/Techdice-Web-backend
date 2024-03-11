@@ -8,7 +8,20 @@ class User < ApplicationRecord
 
   has_many :user_service
 
+  validates :first_name, presence: true
+  validates :first_name, length: { minimum: 2 }
+
+  validates :last_name, presence: true
+  validates :last_name, length: { minimum: 2 }
+
   def jwt_payload
     super
   end
+
+  private
+
+  def toggle_enrollment
+    self.is_enrolled = !self.is_enrolled
+  end
+
 end
