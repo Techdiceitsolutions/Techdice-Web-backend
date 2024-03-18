@@ -17,12 +17,16 @@ module Api
 
       # POST /services
       def create
-        @service = Service.new(service_params)
+        if current_admin
+          @service = Service.new(service_params)
 
-        if @service.save
-          render json: @service, status: :created, location: @service
+          if @service.save
+            render json: @service, status: :created, location: @service
+          else
+            render json: @service.errors, status: :unprocessable_entity
+          end
         else
-          render json: @service.errors, status: :unprocessable_entity
+          render json: { error: 'Unauthorized' }, status: :unauthorized
         end
       end
 
