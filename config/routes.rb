@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/index'
   resources :user_services
   resources :services
   devise_for :users, controllers: {
@@ -21,5 +22,7 @@ Rails.application.routes.draw do
     end
 
   end
+
+  get '/users', to: 'users#index'
 
 end
