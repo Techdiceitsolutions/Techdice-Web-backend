@@ -6,8 +6,7 @@ module Api
       # GET /services
       def index
         @services = Service.all
-
-        render json: @services
+        render json: ServiceSerializer.new(@services).serializable_hash[:data]
       end
 
       # GET /services/1
@@ -21,7 +20,7 @@ module Api
           @service = Service.new(service_params)
 
           if @service.save
-            render json: @service, status: :created, location: @service
+            render json: @service, status: :created
           else
             render json: @service.errors, status: :unprocessable_entity
           end
@@ -53,7 +52,7 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def service_params
-        params.require(:service).permit(:name, :description, :icon, :duration, :vacancy)
+        params.require(:service).permit(:name, :description, :duration, :vacancy)
       end
     end
   end
