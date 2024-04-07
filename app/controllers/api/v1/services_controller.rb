@@ -52,7 +52,7 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def service_params
-        params.require(:service).permit(:name, :description, :duration, :vacancy)
+        params.require(:service).permit(:name, :description, :duration, :vacancy, :icon)
       end
     end
   end
