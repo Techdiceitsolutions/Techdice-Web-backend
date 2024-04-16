@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :feedbacks
+
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     registrations: 'admins/registrations',
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :services
       resources :applications
+      resources :feedbacks
     end
 
   end
