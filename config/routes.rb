@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     passwords: 'admins/passwords'
   }
 
+  get '/admins' => 'admins#index'
+
   namespace :api do
     namespace :v1 do
       resources :services
