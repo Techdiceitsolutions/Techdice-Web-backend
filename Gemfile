@@ -57,3 +57,7 @@ end
 
 gem 'devise'
 gem 'devise-jwt'
+gem 'image_processing'
+gem 'jsonapi-serializer', '~> 2.2'
+gem 'ruby-vips'
+gem 'poppler', '~> 4.2', '>= 4.2.2'

@@ -1,0 +1,59 @@
+module Api
+  module V1
+    class Api::V1::ServicesController < ApplicationController
+      before_action :set_service, only: %i[show update destroy]
+
+      # GET /services
+      def index
+        @services = Service.all
+        render json: ServiceSerializer.new(@services).serializable_hash[:data]
+      end
+
+      # GET /services/1
+      def show
+        render json: @service
+      end
+
+      # POST /services
+      def create
+        if current_admin
+          @service = Service.new(service_params)
+
+          if @service.save
+            render json: @service, status: :created
+          else
+            render json: @service.errors, status: :unprocessable_entity
+          end
+        else
+          render json: { error: 'Unauthorized' }, status: :unauthorized
+        end
+      end
+
+      # PATCH/PUT /services/1
+      def update
+        if @service.update(service_params)
+          render json: @service
+        else
+          render json: @service.errors, status: :unprocessable_entity
+        end
+      end
+
+      # DELETE /services/1
+      def destroy
+        @service.destroy
+      end
+
+      private
+
+      # Use callbacks to share common setup or constraints between actions.
+      def set_service
+        @service = Service.find(params[:id])
+      end
+
+      # Only allow a list of trusted parameters through.
+      def service_params
+        params.require(:service).permit(:name, :description, :duration, :vacancy, :icon)
+      end
+    end
+  end
+end
